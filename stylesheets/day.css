@@ -1,3 +1,7 @@
 .item {
-    background-color: lightblue;
+    /* border: 2px solid #99cfe0; */
+    border: 2px solid #72bcd4;
+    border-radius: 20px;
+    /* background-color: #add8e6; */
+    background-color: rgba(173, 216, 230, 0.3);
 }
