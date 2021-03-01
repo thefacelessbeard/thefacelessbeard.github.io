@@ -1,2 +1,2 @@
-- 7:30 25-02-21 Streamed on twitch/thefacelessbeard
-- 23:30 20-02-21 Released on youtube/thefacelessbeard
+- 7:30 25-02-21 Streamed on twitch/thefacelessbeard::https://twitch.tv/thefacelessbeard
+- 23:30 20-02-21 Released video on youtube/thefacelessbeard::https://www.youtube.com/channel/UC6FoYqo2W9tcgsLt_0OJl_g/featured

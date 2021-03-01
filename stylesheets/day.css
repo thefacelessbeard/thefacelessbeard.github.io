@@ -27,7 +27,7 @@
     grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
     grid-gap: 20px;
 }
-.past {
+.rt {
     text-align: right;
     font-weight: 600;
 }

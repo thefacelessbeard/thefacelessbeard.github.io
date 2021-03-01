@@ -13,34 +13,6 @@
             <!-- var resp = fetch('weaves.md') -->
             <!--     .then(response => response.text()) -->
             <!--     .then(text => console.log(text.split('\n')[0].split(' '))) -->
-            var file = 'http://localhost:7001/weaves.md'
-            function readTextFile(file)
-            {
-                var rawFile = new XMLHttpRequest();
-                rawFile.open("GET", file, false);
-                rawFile.onreadystatechange = function () {
-                    if(rawFile.readyState === 4) {
-                        if(rawFile.status === 200 || rawFile.status == 0) {
-                            var allText = rawFile.responseText;
-                            var allTextLines = allText.split('\n')
-                            for (const item of allTextLines) {
-                                if (item) {
-                                    var time = item.split(' ')[1]
-                                    var date = item.split(' ')[2]
-                                    var context = item.slice(item.indexOf(date) + date.length + 1)
-                                    var mDate = moment(date + ' ' + time, "DD-MM-YY HH:mm").format()
-                                    console.log(moment(mDate).calendar({
-                                            sameElse: 'On DD MMM YYYY'
-                                    }))
-                                }
-                            }
-                        }
-                    }
-                }
-                rawFile.send(null);
-            }
-            readTextFile(file)
-
         </script>
     </head>
     <body>
@@ -58,33 +30,56 @@
                     <span>e</span>
                     <span>s</span>
                 </h2>
-                <div class="item">
-                    <div class="td">
-                        Mon, 22 Feb, 2021
-                        7:30 AM
-                    </div>
-                    <div class="text">
-                        Streamed on <a href='twitch.tv/thefacelessbeard'> twitch.tv/thefacelessbeard </a>
-                    </div>
-                    <div class="past">
-                        12 hours ago
-                    </div>
-                </div>
-                <br>
-                <div class="item">
-                    <div class="td">
-                        Sat, 20 Feb, 2021
-                        11:30 PM
-                    </div>
-                    <div class="text">
-                        Released video on <a href='https://www.youtube.com/channel/UC6FoYqo2W9tcgsLt_0OJl_g'> youtube </a>
-                    </div>
-                    <div class="past">
-                        42 hours ago
-                    </div>
-                </div>
             </div>
         </div>
+        <script>
+
+            var file = 'http://localhost:7001/weaves.md'
+            function readTextFile(file)
+            {
+                var rawFile = new XMLHttpRequest();
+                rawFile.open("GET", file, false);
+                rawFile.onreadystatechange = function () {
+                    if(rawFile.readyState === 4) {
+                        if(rawFile.status === 200 || rawFile.status == 0) {
+                            var allText = rawFile.responseText;
+                            var allTextLines = allText.split('\n')
+                            for (const item of allTextLines) {
+                                if (item) {
+                                    var time = item.split(' ')[1]
+                                    var date = item.split(' ')[2]
+                                    var link = item.split('::')[1]
+                                    var context = item.slice(item.indexOf(date) + date.length + 1, item.indexOf(link)-2)
+                                    var mDate = moment(date + ' ' + time, "DD-MM-YY HH:mm").format()
+                                    var ts = moment(mDate).calendar({
+                                                sameElse: 'On DD MMM YYYY'
+                                            })
+                                    var rt = moment(mDate).fromNow()
+                                    var htmlCode = '<div class="item"> \
+                                                        <div class="ts">'
+                                                        + ts +
+                                                        '</div> \
+                                                        <div class="context">'
+                                                        + context.slice(0, context.lastIndexOf(' ')) + ' ' +
+                                                        '<a href="' + link + '">'
+                                                        + context.slice(context.lastIndexOf(' ')) + ' ' + '</a>' +
+                                                        '</div> \
+                                                        <div class="rt">'
+                                                        + rt +
+                                                        '</div> \
+                                                    </div> \
+                                                    <br>'
+                                    var temp = document.getElementById("weaves")
+                                    temp.insertAdjacentHTML("beforeend", htmlCode)
+                                }
+                            }
+                        }
+                    }
+                }
+                rawFile.send(null);
+            }
+            readTextFile(file)
+        </script>
     </body>
 </html>
 
