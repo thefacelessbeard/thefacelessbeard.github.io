@@ -16,18 +16,17 @@
 }
 
 #socials {
-    /* padding-left: 15%; */
-    /* padding-right: 15%; */
+    /* margin-left: 0%; */
+    /* margin-right: 0%; */
     font-size:calc(100% + .1vw);
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     flex-wrap: wrap;
-    align-items: center;
 }
 
-#socials > a {
-    margin: auto;
-}
+/* #socials > a { */
+/*     margin: auto; */
+/* } */
 
 a {
     color: rgb(58,169,191);
