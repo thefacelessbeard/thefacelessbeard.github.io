@@ -21,6 +21,12 @@
     font-size:calc(100% + .1vw);
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+#socials > a {
+    margin: auto;
 }
 
 a {
